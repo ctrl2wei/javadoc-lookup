@@ -174,7 +174,8 @@
   "Return true if the JRE Javadoc has been indexed. The class
 java.net.URL is used for this test, since it's simple and should
 always be there."
-  (gethash "java.net.URL" jdl/index))
+  (or (gethash "java.base.java.net.URL" jdl/index)
+      (gethash "java.net.URL" jdl/index)))
 
 (defun jdl/get-class-list ()
   (cl-loop for class being the hash-keys of jdl/index
